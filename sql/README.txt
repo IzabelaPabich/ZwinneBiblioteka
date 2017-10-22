@@ -37,7 +37,7 @@ Utorzyłem 3 tabele: /* Wszystkie PK maja inkrementacje automatyczna */
 				FK_UZYTKOWNIK int(11) 
 				DATA_WYPOZYCZENIA timestamp
 				
-Utorzyłem 2 vidoki:
+Utorzyłem 3 widoki:
 - v_nie_wypozyczone_ksiazki
 				Columns:
 				Nazwa książki varchar(100) 
