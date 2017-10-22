@@ -38,7 +38,7 @@ Utorzyłem 3 tabele: /* Wszystkie PK maja inkrementacje automatyczna */
 				DATA_WYPOZYCZENIA timestamp
 				
 Utorzyłem 2 vidoki:
-- nie_wypozyczone_ksiazki
+- v_nie_wypozyczone_ksiazki
 				Columns:
 				Nazwa książki varchar(100) 
 				Imie Autora varchar(45) 
@@ -46,10 +46,17 @@ Utorzyłem 2 vidoki:
 				Data wydania date 
 				Kategoria varchar(45)
 				
-- wypozyczone_ksiazki
+- v_wypozyczone_ksiazki
 				Columns:
 				Nazwa użytkownika varchar(20) 
 				Nazwa książki varchar(100) 
 				Imiona Autora varchar(45) 
 				Nazwisko Autora varchar(45)
+
+- v_uzytkownicy;
+				Id użytkownika int(11) 
+				Nazwa użytkownika varchar(20) 
+				Imiona użytkownika varchar(45) 
+				Nazwisko użytkownika varchar(45)
+
 
