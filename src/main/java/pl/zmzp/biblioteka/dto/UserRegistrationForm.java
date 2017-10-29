@@ -2,35 +2,37 @@ package pl.zmzp.biblioteka.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 public class UserRegistrationForm {
 
-    @NotEmpty
-    private String nazwa_uzy;
 
-    @NotEmpty
+    private String nazwauzy;
+
+
     private String haslo;
 
-    @NotEmpty
+
     private String imiona_uzy;
 
-    @NotEmpty
+
     private String nazwisko_uzy;
 
-    @NotEmpty
+
     private String pesel;
 
-    @NotEmpty
+
     private String email;
 
-    @NotEmpty
+
     private String telefon;
 
-    public String getNazwa_uzy() {
-        return nazwa_uzy;
+    public String getNazwauzy() {
+        return nazwauzy;
     }
 
-    public void setNazwa_uzy(String nazwa_uzy) {
-        this.nazwa_uzy = nazwa_uzy;
+    public void setNazwauzy(String nazwauzy) {
+        this.nazwauzy = nazwauzy;
     }
 
     public String getHaslo() {

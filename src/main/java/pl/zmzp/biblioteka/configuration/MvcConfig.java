@@ -20,7 +20,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-    
+
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();

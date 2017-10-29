@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<form method="POST" action="/login">
+<form:form method="POST" action="/login" modelAttribute="userLoginForm">
 
-    <input name="username" type="text" />
-    <input name="password" type="password"/>
+    <form:input name="username" path="nazwauzy" type="text" placeholder="Podaj login"/>
+    <form:input name="password" path="haslo" type="password" placeholder="Podaj haslo"/>
 
-    <button type="submit">Zaloguj</button>
+    <form:button type="submit">Zaloguj</form:button>
 
-</form>
+</form:form>

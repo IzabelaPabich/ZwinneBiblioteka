@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface UserRepositoryDao extends JpaRepository<User,Integer>{
     List<User> findUserByPesel(String pesel);
+    List<User> findUserByNazwaUzy(String nazwa_uzy);
+    
 }

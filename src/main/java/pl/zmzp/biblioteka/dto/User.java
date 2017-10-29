@@ -1,6 +1,7 @@
 package pl.zmzp.biblioteka.dto;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -12,9 +13,8 @@ public class User implements Serializable{
     @Column(name = "ID_UZYTKOWNIKA")
     private Integer id_uzytkownika;
 
-
     @Column(name = "NAZWA_UZY")
-    private String nazwa_uzy;
+    private String nazwaUzy;
 
     @Column(name = "HASLO")
     private String haslo;
@@ -45,12 +45,12 @@ public class User implements Serializable{
         this.id_uzytkownika = id_uzytkownika;
     }
 
-    public String getNazwa_uzy() {
-        return nazwa_uzy;
+    public String getNazwaUzy() {
+        return nazwaUzy;
     }
 
-    public void setNazwa_uzy(String nazwa_uzy) {
-        this.nazwa_uzy = nazwa_uzy;
+    public void setNazwaUzy(String nazwaUzy) {
+        this.nazwaUzy = nazwaUzy;
     }
 
     public String getHaslo() {
