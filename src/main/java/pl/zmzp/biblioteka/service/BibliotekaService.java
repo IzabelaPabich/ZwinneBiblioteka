@@ -1,5 +1,6 @@
 package pl.zmzp.biblioteka.service;
 
+import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface BibliotekaService {
     List<User> getUserByNazwaUzy(String nazwa_uzy);
     boolean checkIfUserExists(String nazwa_uzy);
     void saveNewUser(User user);
+    List<Book> getAllBooks();
 }

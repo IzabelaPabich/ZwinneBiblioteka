@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.zmzp.biblioteka.dao.UserRepositoryDao;
+import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
@@ -26,6 +27,8 @@ public class WelcomeController {
         final List<User> allUsers = bibliotekaService.getAllUsers();
         model.addAttribute("users", allUsers);
         model.addAttribute("name", name);
+        final List<Book> allBooks = bibliotekaService.getAllBooks();
+        model.addAttribute("books", allBooks);
         return "welcome";
     }
 }

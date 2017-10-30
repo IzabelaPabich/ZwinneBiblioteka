@@ -17,6 +17,10 @@ Hello ${name}
     <c:out value="${user.nazwaUzy}"/><br><br>
 </c:forEach>
 
+<c:forEach var="book" items="${books}" varStatus="counter">
+    <c:out value="${book.nazwa_ksiazki}"/><br>
+</c:forEach>
+
 
 </body>
 </html>
