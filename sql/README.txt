@@ -19,6 +19,7 @@ Utorzyłem 3 tabele: /* Wszystkie PK maja inkrementacje automatyczna */
 				NAZWISKO_AUTO varchar(45) 
 				DATA_WYDANIA date 
 				KATEGORIA varchar(45)	
+				
 - uzytkownicy
 				Columns:
 				ID_UZYTKOWNIKA int(11) AI PK 
@@ -30,12 +31,28 @@ Utorzyłem 3 tabele: /* Wszystkie PK maja inkrementacje automatyczna */
 				EMAIL varchar(255) 
 				TELEFON int(11) 
 				DATA_UTWORZENIA timestamp
+				
 - wypozyczenia /* tabela lączaca dwie górne */
 				Columns:
 				ID_WYPOZYCZENIA int(11) AI PK 
 				FK_KSIAZKA int(11) 
 				FK_UZYTKOWNIK int(11) 
 				DATA_WYPOZYCZENIA timestamp
+				- wypozyczenia /* tabela lączaca dwie górne */
+				Columns:
+				ID_WYPOZYCZENIA int(11) AI PK 
+				FK_KSIAZKA int(11) 
+				FK_UZYTKOWNIK int(11) 
+				DATA_WYPOZYCZENIA timestamp
+				
+- role
+				ID int(11) AI PK 
+				NAME varchar(45)
+				
+- uzytkownicy_role /* tabela lączaca role i uzytkownicy */
+				ID_UZYTKOWNICY_ROLE int(11) AI PK 
+				FK_UZYTKOWNICY int(11) 
+				FK_ROLE int(11)
 				
 Utorzyłem 3 widoki:
 - v_nie_wypozyczone_ksiazki
