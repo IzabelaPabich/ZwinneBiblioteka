@@ -38,12 +38,6 @@ Utorzyłem 3 tabele: /* Wszystkie PK maja inkrementacje automatyczna */
 				FK_KSIAZKA int(11) 
 				FK_UZYTKOWNIK int(11) 
 				DATA_WYPOZYCZENIA timestamp
-				- wypozyczenia /* tabela lączaca dwie górne */
-				Columns:
-				ID_WYPOZYCZENIA int(11) AI PK 
-				FK_KSIAZKA int(11) 
-				FK_UZYTKOWNIK int(11) 
-				DATA_WYPOZYCZENIA timestamp
 				
 - role
 				ID int(11) AI PK 
