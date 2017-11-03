@@ -1,5 +1,8 @@
 package pl.zmzp.biblioteka.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,7 @@ import pl.zmzp.biblioteka.dto.User;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DefaultBibliotekaService implements BibliotekaService {
@@ -50,6 +54,15 @@ public class DefaultBibliotekaService implements BibliotekaService {
     @Override
     public List<Book> getAllBooks() {
         return bookRepositoryDao.findAll();
+    }
+
+    @Override
+    public boolean login(String nazwa_uzy, String haslo) {
+        final List<User> userByNazwaUzy = userRepositoryDao.findUserByNazwaUzy(nazwa_uzy);
+        if(!userByNazwaUzy.isEmpty() && StringUtils.equals(haslo, Optional.ofNullable(userByNazwaUzy.stream().findFirst().get().getHaslo()).orElse(StringUtils.EMPTY))){
+            return true;
+        }
+        return false;
     }
 
 

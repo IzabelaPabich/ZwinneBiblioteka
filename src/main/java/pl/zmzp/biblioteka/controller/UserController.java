@@ -20,6 +20,8 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
+    public static final String LOGIN_PAGE = "login";
+    public static final String REGISTRATION_PAGE = "registration";
     @Autowired
     ModelMapper modelMapper;
 
@@ -29,7 +31,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model){
         model.addAttribute("userForm", new UserRegistrationForm());
-        return "registration";
+        return REGISTRATION_PAGE;
     }
 
 
@@ -37,13 +39,12 @@ public class UserController {
     public String registration(@ModelAttribute(name = "userForm")  UserRegistrationForm userRegistrationForm, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.hasErrors());
-            return "registration";
+            return REGISTRATION_PAGE;
         }
 
         if(bibliotekaService.checkIfUserExists(userRegistrationForm.getNazwauzy())){
             model.addAttribute("userAlreadyExistsWarning", "Użytkownik o takiej nazwie już istnieje");
-            return "registration";
+            return REGISTRATION_PAGE;
         }
 
         final User newUser = modelMapper.map(userRegistrationForm, User.class);
@@ -56,15 +57,21 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model){
         model.addAttribute("userLoginForm", new UserLoginForm());
-        return "login";
+        return LOGIN_PAGE;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("userLoginForm") @Valid UserLoginForm userLoginForm, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
-            return "login";
+            return LOGIN_PAGE;
         }
-        return "redirect:/hello";
+
+        if (bibliotekaService.login(userLoginForm.getNazwauzy(), userLoginForm.getHaslo())){
+            return "redirect:/hello";
+        }
+
+        return LOGIN_PAGE;
+
     }
 }

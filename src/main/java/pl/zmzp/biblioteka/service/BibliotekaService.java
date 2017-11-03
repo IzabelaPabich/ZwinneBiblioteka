@@ -13,4 +13,5 @@ public interface BibliotekaService {
     boolean checkIfUserExists(String nazwa_uzy);
     void saveNewUser(User user);
     List<Book> getAllBooks();
+    boolean login(String nazwa_uzy, String haslo);
 }
