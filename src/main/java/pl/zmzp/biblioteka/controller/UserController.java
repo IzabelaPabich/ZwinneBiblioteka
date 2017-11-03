@@ -61,17 +61,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("userLoginForm") @Valid UserLoginForm userLoginForm, BindingResult bindingResult, Model model){
+    public String log(Model model){
 
-        if(bindingResult.hasErrors()){
-            return LOGIN_PAGE;
-        }
-
-        if (bibliotekaService.login(userLoginForm.getNazwauzy(), userLoginForm.getHaslo())){
             return "redirect:/hello";
-        }
-
-        return LOGIN_PAGE;
 
     }
 }

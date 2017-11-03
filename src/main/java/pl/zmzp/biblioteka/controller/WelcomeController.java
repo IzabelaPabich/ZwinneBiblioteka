@@ -18,6 +18,11 @@ import java.util.List;
 @Controller
 public class WelcomeController {
 
+    @RequestMapping("/")
+    public String greetings(){
+        return "redirect:/hello";
+    }
+
 
     @Autowired
     BibliotekaService bibliotekaService;

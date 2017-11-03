@@ -37,13 +37,13 @@ public class DefaultBibliotekaService implements BibliotekaService {
     }
 
     @Override
-    public List<User> getUserByNazwaUzy(String nazwa_uzy) {
+    public User getUserByNazwaUzy(String nazwa_uzy) {
         return userRepositoryDao.findUserByNazwaUzy(nazwa_uzy);
     }
 
     @Override
     public boolean checkIfUserExists(String nazwa_uzy) {
-        return !getUserByNazwaUzy(nazwa_uzy).isEmpty();
+        return getUserByNazwaUzy(nazwa_uzy) != null;
     }
 
     @Override
@@ -58,8 +58,8 @@ public class DefaultBibliotekaService implements BibliotekaService {
 
     @Override
     public boolean login(String nazwa_uzy, String haslo) {
-        final List<User> userByNazwaUzy = userRepositoryDao.findUserByNazwaUzy(nazwa_uzy);
-        if(!userByNazwaUzy.isEmpty() && StringUtils.equals(haslo, Optional.ofNullable(userByNazwaUzy.stream().findFirst().get().getHaslo()).orElse(StringUtils.EMPTY))){
+        final User userByNazwaUzy = userRepositoryDao.findUserByNazwaUzy(nazwa_uzy);
+        if(userByNazwaUzy != null && StringUtils.equals(haslo, userByNazwaUzy.getHaslo())){
             return true;
         }
         return false;

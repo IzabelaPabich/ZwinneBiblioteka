@@ -9,7 +9,7 @@ public interface BibliotekaService {
 
     List<User> getAllUsers();
     List<User> getUsersByPesel(String pesel);
-    List<User> getUserByNazwaUzy(String nazwa_uzy);
+    User getUserByNazwaUzy(String nazwa_uzy);
     boolean checkIfUserExists(String nazwa_uzy);
     void saveNewUser(User user);
     List<Book> getAllBooks();
