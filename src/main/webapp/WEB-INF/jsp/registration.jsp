@@ -22,3 +22,6 @@
 <c:if test="${userAlreadyExistsWarning ne null}">
     <c:out value="${userAlreadyExistsWarning}"/>
 </c:if>
+
+<br>
+<a href="/login"><button>Logowanie</button></a>

@@ -9,19 +9,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.zmzp.biblioteka.dao.UserRepositoryDao;
 import pl.zmzp.biblioteka.dto.User;
-import pl.zmzp.biblioteka.dto.UserLoginForm;
 import pl.zmzp.biblioteka.dto.UserRegistrationForm;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
 import javax.validation.Valid;
+
 
 @Controller
 public class UserController {
 
     public static final String LOGIN_PAGE = "login";
     public static final String REGISTRATION_PAGE = "registration";
+
     @Autowired
     ModelMapper modelMapper;
 
@@ -36,7 +36,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute(name = "userForm")  UserRegistrationForm userRegistrationForm, BindingResult bindingResult, Model model){
+    public String registration(@ModelAttribute(name = "userForm") @Valid UserRegistrationForm userRegistrationForm, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
             return REGISTRATION_PAGE;
@@ -56,14 +56,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model){
-        model.addAttribute("userLoginForm", new UserLoginForm());
         return LOGIN_PAGE;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String log(Model model){
-
-            return "redirect:/hello";
-
-    }
 }

@@ -10,6 +10,15 @@
     <title>Hello</title>
 </head>
 <body>
+
+<form action="/logout" method="post">
+    <input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
+    <input type="submit" value="Logout">
+</form>
+
+
 Hello ${name}
 
 <c:forEach var="user" items="${users}" varStatus="counter">
