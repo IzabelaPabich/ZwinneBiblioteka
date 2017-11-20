@@ -22,18 +22,9 @@ public class WelcomeController {
     public String greetings(){
         return "redirect:/hello";
     }
-
-
-    @Autowired
-    BibliotekaService bibliotekaService;
     
     @RequestMapping("/hello")
-    public String hello( Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
-        final List<User> allUsers = bibliotekaService.getAllUsers();
-        model.addAttribute("users", allUsers);
-        model.addAttribute("name", name);
-        final List<Book> allBooks = bibliotekaService.getAllBooks();
-        model.addAttribute("books", allBooks);
+    public String hello(Model model) {
         return "welcome";
     }
     

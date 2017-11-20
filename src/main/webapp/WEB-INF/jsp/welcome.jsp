@@ -4,14 +4,5 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layoutBeforeLogin>
-    Hello ${name}
 
-    <c:forEach var="user" items="${users}" varStatus="counter">
-        <c:out value="${user.id_uzytkownika}"/><br>
-        <c:out value="${user.nazwaUzy}"/><br><br>
-    </c:forEach>
-
-    <c:forEach var="book" items="${books}" varStatus="counter">
-        <c:out value="${book.nazwa_ksiazki}"/><br>
-    </c:forEach>
 </t:layoutBeforeLogin>
