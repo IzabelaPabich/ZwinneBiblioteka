@@ -36,4 +36,9 @@ public class WelcomeController {
         model.addAttribute("books", allBooks);
         return "welcome";
     }
+    
+    @RequestMapping("/mainpage")
+    public String mainpage(Model model) {
+        return "/mainpage";
+    }
 }
