@@ -13,12 +13,14 @@ public class BookBorrow {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_WYPOZYCZENIA")
     private Integer id_wypozyczenia;
-
-    @Column(name = "FK_KSIAZKA")
-    private Integer id_ksiazki;
-
-    @Column(name = "FK_UZYTKOWNIK")
-    private Integer id_uzytkownika;
+    
+    @OneToOne
+    @JoinColumn(name = "FK_KSIAZKA")
+    private Book ksiazka;
+    
+    @ManyToOne
+    @JoinColumn(name = "FK_UZYTKOWNIK")
+    private User uzytkownik;
 
     @Column(name = "DATA_WYPOZYCZENIA")
     private Date data_wypozyczenia;
@@ -30,23 +32,23 @@ public class BookBorrow {
     public void setId_wypozyczenia(Integer id_wypozyczenia) {
         this.id_wypozyczenia = id_wypozyczenia;
     }
-
-    public Integer getId_ksiazki() {
-        return id_ksiazki;
+    
+    public Book getKsiazka () {
+        return ksiazka;
     }
-
-    public void setId_ksiazki(Integer id_ksiazki) {
-        this.id_ksiazki = id_ksiazki;
+    
+    public void setKsiazka ( Book ksiazka ) {
+        this.ksiazka = ksiazka;
     }
-
-    public Integer getId_uzytkownika() {
-        return id_uzytkownika;
+    
+    public User getUzytkownik () {
+        return uzytkownik;
     }
-
-    public void setId_uzytkownika(Integer id_uzytkownika) {
-        this.id_uzytkownika = id_uzytkownika;
+    
+    public void setUzytkownik ( User uzytkownik ) {
+        this.uzytkownik = uzytkownik;
     }
-
+    
     public Date getData_wypozyczenia() {
         return data_wypozyczenia;
     }

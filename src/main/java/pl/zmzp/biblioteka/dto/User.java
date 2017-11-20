@@ -3,6 +3,7 @@ package pl.zmzp.biblioteka.dto;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="uzytkownicy")
@@ -36,6 +37,16 @@ public class User implements Serializable{
 
     @Column(name = "DATA_UTWORZENIA")
     private String data_tworzenia;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "uzytkownicy_role",
+            inverseJoinColumns = {@JoinColumn(name = "FK_ROLE", referencedColumnName = "ID")},
+            joinColumns = {@JoinColumn(name = "FK_UZYTKOWNICY", referencedColumnName = "ID_UZYTKOWNIKA")})
+    private List<Roles> roles;
+    
+    @OneToMany(mappedBy = "uzytkownik")
+    private List<BookBorrow> bookBorrows;
 
     public Integer getId_uzytkownika() {
         return id_uzytkownika;
@@ -107,5 +118,21 @@ public class User implements Serializable{
 
     public void setData_tworzenia(String data_tworzenia) {
         this.data_tworzenia = data_tworzenia;
+    }
+    
+    public List< Roles > getRoles () {
+        return roles;
+    }
+    
+    public void setRoles ( List< Roles > roles ) {
+        this.roles = roles;
+    }
+    
+    public List< BookBorrow > getBookBorrows () {
+        return bookBorrows;
+    }
+    
+    public void setBookBorrows ( List< BookBorrow > bookBorrows ) {
+        this.bookBorrows = bookBorrows;
     }
 }
