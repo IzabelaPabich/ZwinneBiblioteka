@@ -5,24 +5,26 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layoutBeforeLogin>
-    <form:form action="/registration" method="POST" modelAttribute="userForm">
+    <div>
+        <form:form action="/registration" method="POST" modelAttribute="userForm">
 
-        <form:input type="text" path="nazwauzy" placeholder="Nazwa"
-                        autofocus="true"/>
+            <form:input type="text" path="nazwauzy" placeholder="Nazwa"
+                            autofocus="true"/>
 
-        <form:input type="password" path="haslo" placeholder="Hasło"/>
+            <form:input type="password" path="haslo" placeholder="Hasło"/>
 
-        <form:input type="text" path="imiona_uzy" placeholder="Imię"/>
-        <form:input type="text" path="nazwisko_uzy" placeholder="Nazwisko"/>
-        <form:input type="text" path="pesel" placeholder="Pesel"/>
-        <form:input type="text" path="email" placeholder="Adres email"/>
-        <form:input type="text" path="telefon" placeholder="Numer telefonu"/>
+            <form:input type="text" path="imiona_uzy" placeholder="Imię"/>
+            <form:input type="text" path="nazwisko_uzy" placeholder="Nazwisko"/>
+            <form:input type="text" path="pesel" placeholder="Pesel"/>
+            <form:input type="text" path="email" placeholder="Adres email"/>
+            <form:input type="text" path="telefon" placeholder="Numer telefonu"/>
 
-        <form:button type="submit">Submit</form:button>
+            <form:button type="submit">Submit</form:button>
 
-    </form:form>
+        </form:form>
 
-    <c:if test="${userAlreadyExistsWarning ne null}">
-        <c:out value="${userAlreadyExistsWarning}"/>
-    </c:if>
+        <c:if test="${userAlreadyExistsWarning ne null}">
+            <c:out value="${userAlreadyExistsWarning}"/>
+        </c:if>
+    </div>
 </t:layoutBeforeLogin>

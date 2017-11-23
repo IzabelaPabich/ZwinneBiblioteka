@@ -1,0 +1,81 @@
+body {
+    background-color: #ccccff;
+    color: black;
+}
+
+.logo {
+    height: 15%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    background-color: #330099;
+    color: white;
+}
+
+.menu {
+    height: 30px;
+    margin-bottom: 2%;
+    border-bottom: thin solid;
+}
+
+.content {
+    margin: 1%;
+    float: left;
+}
+
+.left-site {
+    float: left;
+}
+
+.right-site {
+    float: right;
+}
+
+.menu-item {
+    display: block;
+    width: 20%;
+    height: 100%;
+    padding: 0 8px;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: #9999ff;
+    border-left: thin solid;
+    border-right: thin solid;
+}
+
+a, input {
+    line-height: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.login {
+    position: absolute;
+    height: 200px;
+    width: 400px;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 50%;
+    border: thin solid;
+}
+
+.login-text {
+    height: 40px;
+    border-bottom: thin solid;
+    padding-top: 6%;
+    text-align: center;
+}
+
+.btn {
+    background-color: #ccccff;
+    width: 100%;
+    height: 100%;
+}
+
+.login-form {
+    padding-right: 20px;
+    text-align: right;
+}
+

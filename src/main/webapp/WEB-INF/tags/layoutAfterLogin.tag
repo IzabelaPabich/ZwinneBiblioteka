@@ -8,21 +8,23 @@
         <meta name="description" content="Projekt na ZMZP">
         <meta name="author" content="Łukasz Baryczka, Piotr Bednarek, Jacek Wróblewski, Przemysław Staszyński, Izabela Pabich">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/resources/css/layout.css">
     </head>
     <body>
-    <header>
-        <div class="logo">
-            <jsp:include page="/WEB-INF/jsp/logo.jsp" />
-        </div>
-        <div class="menu">
-            <jsp:include page="/WEB-INF/jsp/menuAfterLogin.jsp" />
-        </div>
-    </header>
+        <header class="header">
+            <div class="logo">
+                <jsp:include page="/WEB-INF/jsp/logo.jsp" />
+            </div>
+            <div class="menu">
+                <jsp:include page="/WEB-INF/jsp/menuAfterLogin.jsp" />
+            </div>
+        </header>
 
-    <div>
-        <section>
+        <br>
+
+        <div class="content">
             <jsp:doBody/>
-        </section>
-    </div>
+        </div>
     </body>
 </html>

@@ -4,5 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layoutBeforeLogin>
+    <div>
 
+    </div>
 </t:layoutBeforeLogin>
