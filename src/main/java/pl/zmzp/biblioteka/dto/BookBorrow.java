@@ -25,6 +25,11 @@ public class BookBorrow {
     @Column(name = "DATA_WYPOZYCZENIA")
     private Date data_wypozyczenia;
 
+    public BookBorrow(Integer user_id, Integer book_id) {
+        this.uzytkownik.setId_uzytkownika(user_id);
+        this.ksiazka.setId_ksiazki(book_id);
+    }
+            
     public Integer getId_wypozyczenia() {
         return id_wypozyczenia;
     }

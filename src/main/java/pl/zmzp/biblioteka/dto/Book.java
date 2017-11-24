@@ -29,6 +29,11 @@ public class Book {
 
     @Column(name = "KATEGORIA")
     private String kategoria;
+    
+    public Book(Integer id, String name) {
+        this.id_ksiazki = id;
+        this.nazwa_ksiazki = name;
+    }
 
     public String getNazwa_ksiazki() {
         return nazwa_ksiazki;

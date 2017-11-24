@@ -14,4 +14,8 @@ public interface BibliotekaService {
     void saveNewUser(User user);
     List<Book> getAllBooks();
     boolean login(String nazwa_uzy, String haslo);
+    List<Book> getAvailableBooks();
+    public List<Book> getUserBorrowedBooks(Integer user_id);
+    public void userBorrowBook(Integer user_id, Integer book_id);
+    public void userReturnBook(Integer user_id, Integer book_id);
 }

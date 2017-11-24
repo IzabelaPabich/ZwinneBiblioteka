@@ -14,6 +14,7 @@ import pl.zmzp.biblioteka.service.BibliotekaService;
 
 import java.util.List;
 import java.util.Optional;
+import pl.zmzp.biblioteka.dao.BookBorrowsRepositoryDao;
 
 @Service
 public class DefaultBibliotekaService implements BibliotekaService {
@@ -25,6 +26,8 @@ public class DefaultBibliotekaService implements BibliotekaService {
     @Autowired
     BookRepositoryDao bookRepositoryDao;
 
+    @Autowired
+    BookBorrowsRepositoryDao bookBorrowsRepositoryDao;
 
     @Override
     public List<User> getAllUsers() {
@@ -64,6 +67,26 @@ public class DefaultBibliotekaService implements BibliotekaService {
         }
         return false;
     }
+
+    @Override
+    public List<Book> getAvailableBooks() {
+        return bookRepositoryDao.findAvailableBooks();
+    }
+    
+    @Override
+    public List<Book> getUserBorrowedBooks(Integer user_id) {
+        return bookRepositoryDao.findUserBorrowedBooks(user_id);
+    }
+    
+    @Override
+    public void userBorrowBook(Integer user_id, Integer book_id) {
+        bookBorrowsRepositoryDao.userBorrowBook(user_id, book_id);
+    }
+    
+    public void userReturnBook(Integer user_id, Integer book_id) {
+        bookBorrowsRepositoryDao.userReturnBook(user_id, book_id);
+    }
+    
 
 
 }

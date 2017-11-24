@@ -13,7 +13,7 @@
         </c:forEach>
 
         <c:forEach var="book" items="${books}" varStatus="counter">
-            <c:out value="${book.nazwa_ksiazki}"/><br>
+            <c:out value="${book.nazwa_ksiazki}"/><form method="post" action="<c:out value="${action}"/>"><input type="hidden" name="id" value="<c:out value="${book.id_ksiazki}"/>"/><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><input type='submit' value='Wypożycz'></form><br>
         </c:forEach>
     </div>
 </t:layoutAfterLogin>
