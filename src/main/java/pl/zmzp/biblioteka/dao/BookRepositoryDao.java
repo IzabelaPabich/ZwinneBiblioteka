@@ -30,7 +30,7 @@ public interface BookRepositoryDao extends JpaRepository<Book, Integer > {
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Book WHERE id_ksiazki = ?1", nativeQuery = true)
+    @Query(value = "DELETE FROM ksiazki WHERE id_ksiazki = ?1", nativeQuery = true)
     void deleteBook(Integer book_id);
 
     //@Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.nazwa_ksiazki, k.nazwisko_autora) FROM Book AS k WHERE k.id_ksiazki = ?1 AND k.nazwisko_autora = ?2")

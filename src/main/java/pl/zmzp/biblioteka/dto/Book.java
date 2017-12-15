@@ -35,6 +35,10 @@ public class Book {
         this.nazwa_ksiazki = name;
     }
 
+    public Book() {
+
+    }
+
     public String getNazwa_ksiazki() {
         return nazwa_ksiazki;
     }
