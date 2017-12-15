@@ -5,11 +5,6 @@
 
 <t:layoutAfterLogin>
     <div>
-        <form method="post" action="<c:out value="${action}"/>">
-        <div><input type="text" name="search_text" placeholder="Search.."><button type="submit">Szukaj</button></div>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-
         <c:forEach var="book" items="${books}" varStatus="counter">
             <c:out value="${book.nazwa_ksiazki}"/><br>
         </c:forEach>

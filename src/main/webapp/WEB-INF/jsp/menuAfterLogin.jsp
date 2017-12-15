@@ -6,7 +6,7 @@
     <a href="bookstore">Katalog książek</a>
 </div>
 <div class="left-site menu-item">
-    <a href="borrows">Moje wypożyczenia</a>
+    <a href="my_borrows">Moje wypożyczenia</a>
 </div>
 <div class="right-site menu-item">
     <form action="/logout" method="post">

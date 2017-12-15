@@ -26,16 +26,33 @@ public class BookController {
     BibliotekaService bibliotekaService;
     
     @RequestMapping("/bookstore")
-    public String bookstore( Model model, @RequestParam (value="name", required=false, defaultValue="World") String name) {
-        final List<User> allUsers = bibliotekaService.getAllUsers();
-        model.addAttribute("users", allUsers);
-        model.addAttribute("name", name);
+    public String bookstore( Model model, @RequestParam (value="search_text", required = false, defaultValue = "") String search_text) {
+        
         //final List<Book > allBooks = bibliotekaService.getAllBooks();
-        final List<Book > availableBooks = bibliotekaService.getAvailableBooks();
-        model.addAttribute("books", availableBooks);
-        model.addAttribute("action","/borrow_book");
+        if(search_text.length() == 0)
+        {
+            final List<Book > availableBooks = bibliotekaService.getAvailableBooks();
+            model.addAttribute("books", availableBooks);
+        }
+        else
+        {
+            final List<Book > foundBooks = bibliotekaService.findAvailableBookByText(search_text);
+            //final List<Book > foundBooks = bibliotekaService.getAvailableBooks();
+            model.addAttribute("books", foundBooks);
+        }
+        model.addAttribute("action","/bookstore");
       
         return "bookstore";
+    }
+    
+    @RequestMapping("/my_borrows")
+    public String user_borrows(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        final List<Book > borrowedBooks = bibliotekaService.getUserBorrowedBooks(bibliotekaService.getUserByNazwaUzy(auth.getName()).getId_uzytkownika());
+        model.addAttribute("books", borrowedBooks);
+        model.addAttribute("action","/my_borrows");
+        
+        return "my_borrows";
     }
     
     @RequestMapping("/borrows")

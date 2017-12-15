@@ -83,8 +83,14 @@ public class DefaultBibliotekaService implements BibliotekaService {
         bookBorrowsRepositoryDao.userBorrowBook(user_id, book_id);
     }
     
+    @Override
     public void userReturnBook(Integer user_id, Integer book_id) {
         bookBorrowsRepositoryDao.userReturnBook(user_id, book_id);
+    }
+
+    @Override
+    public List<Book> findAvailableBookByText(String search_string) {
+        return bookRepositoryDao.findAvailableBooksByText(search_string);
     }
     
 
