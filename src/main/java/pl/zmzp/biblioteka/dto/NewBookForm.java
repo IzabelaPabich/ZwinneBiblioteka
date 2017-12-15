@@ -2,7 +2,7 @@ package pl.zmzp.biblioteka.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by Alebazi on 2017-12-15.
@@ -20,6 +20,8 @@ public class NewBookForm {
 
     @NotEmpty
     private Date data_wydania;
+
+    @NotEmpty String kategoria;
 
 
     public String getNazwiskoAutora() {
@@ -52,5 +54,13 @@ public class NewBookForm {
 
     public void setDataWydania(Date data_wydania) {
         this.data_wydania = data_wydania;
+    }
+
+    public String getKategoria() {
+        return kategoria;
+    }
+
+    public void setKategoria(String kategoria) {
+        this.kategoria = kategoria;
     }
 }
