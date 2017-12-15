@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import pl.zmzp.biblioteka.dto.Book;
 
+import java.sql.Date;
 import java.util.List;
 import org.jboss.logging.Param;
 import org.springframework.data.jpa.repository.Query;
@@ -24,11 +25,20 @@ public interface BookRepositoryDao extends JpaRepository<Book, Integer > {
     @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w where w.uzytkownik.id_uzytkownika = ?1)") 
     List<Book> findUserBorrowedBooks(Integer id);
 
-    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.data_wydania) FROM Book AS k")
+    //@Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.data_wydania) FROM Book AS k")
     List<Book> findAllBooks();
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM ksiazki WHERE id_ksiazki = ?1", nativeQuery = true)
+    @Query(value = "DELETE FROM Book WHERE id_ksiazki = ?1", nativeQuery = true)
     void deleteBook(Integer book_id);
+
+    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.nazwa_ksiazkik.nazwisko_autora) FROM Book AS k WHERE k.id_ksiazki = ?1 AND k.nazwisko_autora = ?2")
+    List<Book> findBook(String tytul, String nazwiskoAutora);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO ksiazki (id_ksiazki, nazwa_ksiazki, imiona_autora, nazwisko_autora, data_wydania, kategoria) " +
+            "VALUES(?1, ?2, ?3, ?4)", nativeQuery = true)
+    void saveBook(String nazwa_ksiazki, String imiona_autora, String nazwisko_autora, Date data_wydania);
 }

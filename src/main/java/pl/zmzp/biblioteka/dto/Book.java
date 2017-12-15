@@ -1,7 +1,7 @@
 package pl.zmzp.biblioteka.dto;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by Alebazi on 2017-10-30.

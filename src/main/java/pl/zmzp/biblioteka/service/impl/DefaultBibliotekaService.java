@@ -92,5 +92,15 @@ public class DefaultBibliotekaService implements BibliotekaService {
         bookRepositoryDao.deleteBook(book_id);
     }
 
+    @Override
+    public boolean checkIfBookExists(String tytul, String nazwiskoAutora) {
+        return bookRepositoryDao.findBook(tytul, nazwiskoAutora) != null ;
+    }
+
+    @Override
+    public void saveNewBook(Book book) {
+        bookRepositoryDao.saveBook(book.getNazwa_ksiazki(), book.getImiona_autora(), book.getNazwisko_autora(), book.getData_wydania());
+    }
+
 
 }

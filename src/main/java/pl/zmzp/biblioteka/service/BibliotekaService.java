@@ -19,4 +19,6 @@ public interface BibliotekaService {
     public void userBorrowBook(Integer user_id, Integer book_id);
     public void userReturnBook(Integer user_id, Integer book_id);
     void deleteBook(Integer book_id);
+    boolean checkIfBookExists(String tytul, String nazwiskoAutora);
+    void saveNewBook(Book book);
 }
