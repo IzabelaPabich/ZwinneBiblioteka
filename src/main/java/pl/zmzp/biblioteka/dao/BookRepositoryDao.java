@@ -1,12 +1,16 @@
 package pl.zmzp.biblioteka.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import pl.zmzp.biblioteka.dto.Book;
 
 import java.util.List;
 import org.jboss.logging.Param;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by Alebazi on 2017-10-30.
@@ -19,4 +23,12 @@ public interface BookRepositoryDao extends JpaRepository<Book, Integer > {
     
     @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w where w.uzytkownik.id_uzytkownika = ?1)") 
     List<Book> findUserBorrowedBooks(Integer id);
+
+    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.data_wydania) FROM Book AS k")
+    List<Book> findAllBooks();
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM ksiazki WHERE id_ksiazki = ?1", nativeQuery = true)
+    void deleteBook(Integer book_id);
 }

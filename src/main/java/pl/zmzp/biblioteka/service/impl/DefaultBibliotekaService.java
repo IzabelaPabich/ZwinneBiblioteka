@@ -56,7 +56,7 @@ public class DefaultBibliotekaService implements BibliotekaService {
 
     @Override
     public List<Book> getAllBooks() {
-        return bookRepositoryDao.findAll();
+        return bookRepositoryDao.findAllBooks();
     }
 
     @Override
@@ -86,7 +86,11 @@ public class DefaultBibliotekaService implements BibliotekaService {
     public void userReturnBook(Integer user_id, Integer book_id) {
         bookBorrowsRepositoryDao.userReturnBook(user_id, book_id);
     }
-    
+
+    @Override
+    public void deleteBook(Integer book_id) {
+        bookRepositoryDao.deleteBook(book_id);
+    }
 
 
 }

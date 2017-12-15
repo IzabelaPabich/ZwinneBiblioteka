@@ -18,4 +18,5 @@ public interface BibliotekaService {
     public List<Book> getUserBorrowedBooks(Integer user_id);
     public void userBorrowBook(Integer user_id, Integer book_id);
     public void userReturnBook(Integer user_id, Integer book_id);
+    void deleteBook(Integer book_id);
 }
