@@ -43,13 +43,13 @@ public class AdminPanelController {
     }
 
     @RequestMapping(value = "/delete_book", method = RequestMethod.POST)
-    public String borrow(Model model, @RequestParam (value="id", required=true, defaultValue="0") Integer id) {
+    public String deleteBook(Model model, @RequestParam (value="id", required=true, defaultValue="0") Integer id) {
         bibliotekaService.deleteBook(id);
         return "redirect:/books_management";
     }
 
     @RequestMapping(value = "/add_book", method = RequestMethod.POST)
-    public String registration(@ModelAttribute(name = "newBookForm") @Valid NewBookForm newBookForm, BindingResult bindingResult, Model model) {
+    public String addBook(@ModelAttribute(name = "newBookForm") @Valid NewBookForm newBookForm, BindingResult bindingResult, Model model) {
 //        if(bibliotekaService.checkIfBookExists(newBookForm.getTytul(), newBookForm.getNazwiskoAutora())) {
 //            model.addAttribute("bookAlreadyExists", "Książka tego autora o takim tytule już istnieje");
 //        } else {
@@ -60,4 +60,19 @@ public class AdminPanelController {
         return "redirect:/books_management";
     }
 
+    @RequestMapping(value = "/users_management", method = RequestMethod.GET)
+    public String usersManagement(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
+        final List<User> allUsers = bibliotekaService.getAllUsers();
+        model.addAttribute("users", allUsers);
+        model.addAttribute("new_user","/new_user");
+        model.addAttribute("delete_user","/delete_user");
+
+        return "users_management";
+    }
+
+    @RequestMapping(value = "/delete_user", method = RequestMethod.POST)
+    public String deleteUser(Model model, @RequestParam (value="id", required=true, defaultValue="0") Integer id) {
+        bibliotekaService.deleteUser(id);
+        return "redirect:/users_management";
+    }
 }

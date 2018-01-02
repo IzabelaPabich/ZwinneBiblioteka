@@ -102,5 +102,10 @@ public class DefaultBibliotekaService implements BibliotekaService {
         bookRepositoryDao.saveBook(book.getNazwa_ksiazki(), book.getImiona_autora(), book.getNazwisko_autora(), new java.sql.Date(book.getData_wydania().getTime()), book.getKategoria());
     }
 
+    @Override
+    public void deleteUser(Integer user_id) {
+        userRepositoryDao.deleteUser(user_id);
+    }
+
 
 }
