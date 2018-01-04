@@ -20,6 +20,6 @@ public interface UserRepositoryDao extends JpaRepository<User,Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM uzytkownica WHERE id_uzytkowika = ?1", nativeQuery = true)
+    @Query(value = "DELETE FROM uzytkownicy WHERE id_uzytkownika = ?1", nativeQuery = true)
     void deleteUser(Integer user_id);
 }
