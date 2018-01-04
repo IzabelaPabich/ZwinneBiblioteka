@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.NewBookForm;
 import pl.zmzp.biblioteka.dto.User;
+import pl.zmzp.biblioteka.dto.UserRegistrationForm;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
 import javax.validation.Valid;
@@ -72,8 +73,9 @@ public class AdminPanelController {
     public String usersManagement(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
         final List<User> allUsers = bibliotekaService.getAllUsers();
         model.addAttribute("users", allUsers);
-        model.addAttribute("new_user","/new_user");
+        model.addAttribute("add_user","/add_user");
         model.addAttribute("delete_user","/delete_user");
+        model.addAttribute("userRegistrationForm", new UserRegistrationForm());
 
         return "users_management";
     }
@@ -81,6 +83,24 @@ public class AdminPanelController {
     @RequestMapping(value = "/delete_user", method = RequestMethod.POST)
     public String deleteUser(Model model, @RequestParam (value="id", required=true, defaultValue="0") Integer id) {
         bibliotekaService.deleteUser(id);
+        return "redirect:/users_management";
+    }
+
+    @RequestMapping(value = "/add_user", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute(name = "userRegistrationForm")UserRegistrationForm userRegistrationForm, BindingResult bindingResult, Model model) {
+
+        if(bindingResult.hasErrors()){
+            return "redirect:/users_management";
+        }
+
+        if(bibliotekaService.checkIfUserExists(userRegistrationForm.getNazwauzy())){
+            model.addAttribute("userAlreadyExistsWarning", "Użytkownik o takiej nazwie już istnieje");
+            return "redirect:/users_management";
+        }
+
+        final User newUser = modelMapper.map(userRegistrationForm, User.class);
+        bibliotekaService.saveNewUser(newUser);
+
         return "redirect:/users_management";
     }
 }

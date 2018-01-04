@@ -7,8 +7,7 @@
 
 <t:layoutAfterLogin>
     <div class="container">
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newBookModal">Dodaj książkę</button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newBookModal">Dodaj książkę</button>
 
         <!-- Modal -->
         <div class="modal fade" id="newBookModal" role="dialog">
