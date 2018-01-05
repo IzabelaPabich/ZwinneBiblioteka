@@ -25,6 +25,7 @@ public interface BibliotekaService {
     void deleteBook(Integer book_id);
     //boolean checkIfBookExists(String tytul, String nazwiskoAutora);
     void saveNewBook(Book book);
+    void deleteUser(Integer user_id);
     public List<Book> getAllBorrowedBooks();
     
 }

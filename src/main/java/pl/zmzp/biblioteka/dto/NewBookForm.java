@@ -1,6 +1,7 @@
 package pl.zmzp.biblioteka.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -16,43 +17,44 @@ public class NewBookForm {
     private String imiona_autora;
 
     @NotEmpty
-    private String tytul;
+    private String nazwa_ksiazki;
 
     @NotEmpty
     private Date data_wydania;
 
-    @NotEmpty String kategoria;
+    @NotEmpty
+    private String kategoria;
 
-
-    public String getNazwiskoAutora() {
+    public String getNazwisko_autora() {
         return nazwisko_autora;
     }
 
-    public void setNazwiskoAutora(String nazwisko_autora) {
+    public void setNazwisko_autora(String nazwisko_autora) {
         this.nazwisko_autora = nazwisko_autora;
     }
 
-    public String getImionaAutora() {
+    public String getImiona_autora() {
         return imiona_autora;
     }
 
-    public void setImionaAutora(String imiona_autora) {
+    public void setImiona_autora(String imiona_autora) {
         this.imiona_autora = imiona_autora;
     }
 
-    public String getTytul() {
-        return tytul;
+    public String getNazwa_ksiazki() {
+        return nazwa_ksiazki;
     }
 
-    public void setTytul(String tytul) {
-        this.tytul = tytul;
+    public void setNazwa_ksiazki(String nazwa_ksiazki) {
+        this.nazwa_ksiazki = nazwa_ksiazki;
     }
 
-    public Date getDataWydania() {
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    public Date getData_wydania() {
         return data_wydania;
     }
 
-    public void setDataWydania(Date data_wydania) {
+    public void setData_wydania(Date data_wydania) {
         this.data_wydania = data_wydania;
     }
 
