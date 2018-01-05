@@ -16,14 +16,20 @@ public class BookBorrow {
     
     @OneToOne
     @JoinColumn(name = "FK_KSIAZKA")
-    private Book ksiazka;
+    public Book ksiazka;
     
     @ManyToOne
     @JoinColumn(name = "FK_UZYTKOWNIK")
-    private User uzytkownik;
+    public User uzytkownik;
 
     @Column(name = "DATA_WYPOZYCZENIA")
-    private Date data_wypozyczenia;
+    public Date data_wypozyczenia;
+    
+    public BookBorrow()
+    {
+        this.uzytkownik = null;
+        this.ksiazka = null;
+    }
 
     public BookBorrow(Integer user_id, Integer book_id) {
         this.uzytkownik.setId_uzytkownika(user_id);

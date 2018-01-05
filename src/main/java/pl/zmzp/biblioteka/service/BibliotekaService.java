@@ -4,6 +4,7 @@ import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 
 import java.util.List;
+import pl.zmzp.biblioteka.dto.BookBorrow;
 
 public interface BibliotekaService {
 
@@ -17,9 +18,13 @@ public interface BibliotekaService {
     List<Book> getAvailableBooks();
     List<Book> findAvailableBookByText(String search_string);
     public List<Book> getUserBorrowedBooks(Integer user_id);
+    public List<BookBorrow> getUserBorrowedBooks(User user);
     public void userBorrowBook(Integer user_id, Integer book_id);
     public void userReturnBook(Integer user_id, Integer book_id);
+    public void moderatorReturnBook(Integer book_id);
     void deleteBook(Integer book_id);
     //boolean checkIfBookExists(String tytul, String nazwiskoAutora);
     void saveNewBook(Book book);
+    public List<Book> getAllBorrowedBooks();
+    
 }

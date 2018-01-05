@@ -31,4 +31,9 @@ public interface BookBorrowsRepositoryDao extends JpaRepository<BookBorrow, Inte
     @Transactional
     @Query(value = "DELETE FROM wypozyczenia WHERE FK_UZYTKOWNIK = ?1 AND FK_KSIAZKA = ?2", nativeQuery = true)
     void userReturnBook(Integer user_id, Integer book_id);
+    
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM wypozyczenia WHERE FK_KSIAZKA = ?1", nativeQuery = true)
+    void moderatorReturnBook(Integer book_id);
 }

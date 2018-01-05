@@ -19,13 +19,15 @@ import javax.transaction.Transactional;
 @Repository
 public interface BookRepositoryDao extends JpaRepository<Book, Integer > {
 
-    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki NOT IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w)") 
+    //@Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.kategoria, k.data_wydania) FROM Book AS k LEFT JOIN k.wypozyczenie")
+    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.kategoria, k.data_wydania, bb.uzytkownik.id_uzytkownika) FROM BookBorrow AS bb RIGHT JOIN bb.ksiazka k ORDER BY k.nazwa_ksiazki ASC")
     List<Book> findAvailableBooks();
     
     @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w where w.uzytkownik.id_uzytkownika = ?1)") 
     List<Book> findUserBorrowedBooks(Integer id);
     
-    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki NOT IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w) AND k.nazwa_ksiazki LIKE %?1%")// OR (k.nazwisko_auto LIKE %?1%) ) OR (k.imiona_auto LIKE %?1%))") 
+    //@Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.kategoria, k.data_wydania, 0) FROM Book AS k where k.id_ksiazki NOT IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w) AND k.nazwa_ksiazki LIKE %?1%")// OR (k.nazwisko_auto LIKE %?1%) ) OR (k.imiona_auto LIKE %?1%))") 
+    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.kategoria, k.data_wydania, bb.uzytkownik.id_uzytkownika) FROM BookBorrow AS bb RIGHT JOIN bb.ksiazka k where k.nazwa_ksiazki LIKE %?1% ORDER BY k.nazwa_ksiazki ASC")
     List<Book> findAvailableBooksByText(String search_string);
 
     //@Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.data_wydania, k.kategoria) FROM Book AS k")
@@ -44,4 +46,7 @@ public interface BookRepositoryDao extends JpaRepository<Book, Integer > {
     @Query(value = "INSERT INTO ksiazki (id_ksiazki, nazwa_ksiazki, imiona_autora, nazwisko_autora, data_wydania, kategoria) " +
             "VALUES(?1, ?2, ?3, ?4, ?5)", nativeQuery = true)
     void saveBook(String nazwa_ksiazki, String imiona_autora, String nazwisko_autora, Date data_wydania, String kategoria);
+    
+    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w)") 
+    List<Book> findAllBorrowedBooks();
 }

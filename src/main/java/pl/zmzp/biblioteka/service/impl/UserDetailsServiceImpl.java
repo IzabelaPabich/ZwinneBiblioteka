@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    public static final String UŻYTKOWNIK = "UŻYTKOWNIK";
+    public static final String UZYTKOWNIK = "UZYTKOWNIK";
 
     @Autowired
     UserRepositoryDao userRepositoryDao;
@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(user != null) {
             final List<SimpleGrantedAuthority> authorities = rolesRepositoryDao.findRolesByUsers(user).stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
             if(authorities.isEmpty()){
-                authorities.add(new SimpleGrantedAuthority(UŻYTKOWNIK));
+                authorities.add(new SimpleGrantedAuthority(UZYTKOWNIK));
             }
             return new org.springframework.security.core.userdetails.User(
                     user.getNazwaUzy(),
