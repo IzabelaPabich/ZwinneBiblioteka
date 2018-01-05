@@ -1,19 +1,17 @@
 package pl.zmzp.biblioteka.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pl.zmzp.biblioteka.dao.BookRepositoryDao;
 import pl.zmzp.biblioteka.dao.UserRepositoryDao;
 import pl.zmzp.biblioteka.dto.Book;
+import pl.zmzp.biblioteka.dto.MenuItem;
 import pl.zmzp.biblioteka.dto.User;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 import pl.zmzp.biblioteka.dao.BookBorrowsRepositoryDao;
 
 @Service
@@ -103,5 +101,13 @@ public class DefaultBibliotekaService implements BibliotekaService {
         userRepositoryDao.deleteUser(user_id);
     }
 
-
+    @Override
+    public List<MenuItem> getMenuItems() {
+        List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(new MenuItem("mainpage", "Strona główna"));
+        menuItems.add(new MenuItem("bookstore", "Katalog książek"));
+        menuItems.add(new MenuItem("borrows", "Moje wypożyczenia"));
+//        List<MenuItem> menuItems = findMenuItemsByRoles("");
+        return menuItems;
+    }
 }

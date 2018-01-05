@@ -1,6 +1,7 @@
 package pl.zmzp.biblioteka.service;
 
 import pl.zmzp.biblioteka.dto.Book;
+import pl.zmzp.biblioteka.dto.MenuItem;
 import pl.zmzp.biblioteka.dto.User;
 
 import java.util.List;
@@ -22,4 +23,5 @@ public interface BibliotekaService {
     //boolean checkIfBookExists(String tytul, String nazwiskoAutora);
     void saveNewBook(Book book);
     void deleteUser(Integer user_id);
+    List<MenuItem> getMenuItems();
 }

@@ -12,7 +12,7 @@ body {
     color: white;
 }
 
-.menu {
+#menu {
     height: 30px;
     margin-bottom: 2%;
     border-bottom: thin solid;

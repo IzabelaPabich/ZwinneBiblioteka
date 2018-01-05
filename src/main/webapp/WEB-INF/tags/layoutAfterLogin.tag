@@ -19,9 +19,7 @@
             <div class="logo">
                 <jsp:include page="/WEB-INF/jsp/logo.jsp" />
             </div>
-            <div class="menu">
-                <jsp:include page="/WEB-INF/jsp/menuAfterLogin.jsp" />
-            </div>
+            <jsp:include page="/WEB-INF/jsp/menuAfterLogin.jsp" />
         </header>
 
         <br>

@@ -51,7 +51,7 @@ public class MvcConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/registration", "/hello", "/resources/**")
+            .antMatchers("/registration", "/hello", "/resources/**", "/menu")
                 .permitAll()
             .anyRequest().authenticated()
             .and()
