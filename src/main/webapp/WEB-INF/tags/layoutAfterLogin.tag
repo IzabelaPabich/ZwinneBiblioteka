@@ -17,12 +17,13 @@
         <link rel="stylesheet" type="text/css" href="/resources/css/layout.css">
     </head>
     <body>
+        <!--
 <div>layoutAfterLogin</div>
         <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
     <table>
         <tr>
             <td>anonymous</td>
-            <!-- Some administrator data here -->
+            
         </tr>
     </table>
 </sec:authorize>
@@ -30,7 +31,7 @@
     <table>
         <tr>
             <td>uzytkownik</td>
-            <!-- Some administrator data here -->
+            
         </tr>
     </table>
 </sec:authorize>
@@ -38,11 +39,11 @@
     <table>
         <tr>
             <td>moderator</td>
-            <!-- Some administrator data here -->
+            
         </tr>
     </table>
 </sec:authorize>
- 
+ -->
         <!-- Roles display 
 <sec:authentication property="authorities" var="roles" scope="page" />
 Your roles are:

@@ -49,4 +49,9 @@ public interface BookRepositoryDao extends JpaRepository<Book, Integer > {
     
     @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki) FROM Book AS k where k.id_ksiazki IN(SELECT DISTINCT w.ksiazka FROM BookBorrow AS w)") 
     List<Book> findAllBorrowedBooks();
+    
+        
+    //@Query("SELECT new pl.zmzp.biblioteka.dto.BookBorrow(bb.uzytkownik, bb.ksiazka, bb.data_wypozyczenia) FROM BookBorrow AS bb RIGHT JOIN bb.ksiazka k ORDER BY k.nazwa_ksiazki ASC")
+    @Query("SELECT new pl.zmzp.biblioteka.dto.Book(k.id_ksiazki, k.nazwa_ksiazki, k.imiona_autora, k.nazwisko_autora, k.kategoria, k.data_wydania, bb.uzytkownik.id_uzytkownika) FROM BookBorrow AS bb RIGHT JOIN bb.ksiazka k ORDER BY k.nazwa_ksiazki ASC")
+    List<Book> getAll();
 }

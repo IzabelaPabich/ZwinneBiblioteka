@@ -20,6 +20,7 @@ public interface BibliotekaService {
     public List<Book> getUserBorrowedBooks(Integer user_id);
     public List<BookBorrow> getUserBorrowedBooks(User user);
     public void userBorrowBook(Integer user_id, Integer book_id);
+    public void userBorrowBook(User user, Book book);
     public void userReturnBook(Integer user_id, Integer book_id);
     public void moderatorReturnBook(Integer book_id);
     void deleteBook(Integer book_id);
@@ -28,4 +29,9 @@ public interface BibliotekaService {
     void deleteUser(Integer user_id);
     public List<Book> getAllBorrowedBooks();
     
+    Book getBookById(Integer id);
+    BookBorrow getBookBorrowByBook(Book book);
+    User getUserById(Integer id);
+    
+    public List<Book> getAllBookBorrows();
 }

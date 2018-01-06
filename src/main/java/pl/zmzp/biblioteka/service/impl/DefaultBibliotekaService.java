@@ -1,5 +1,6 @@
 package pl.zmzp.biblioteka.service.impl;
 
+import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,6 +123,35 @@ public class DefaultBibliotekaService implements BibliotekaService {
     @Override
     public List<BookBorrow> getUserBorrowedBooks(User user) {
         return bookBorrowsRepositoryDao.findBookBorrowsByUzytkownik(user);
+    }
+
+    @Override
+    public Book getBookById(Integer id) {
+        return bookRepositoryDao.findOne(id);
+    }
+
+    @Override
+    public BookBorrow getBookBorrowByBook(Book book) {
+        return bookBorrowsRepositoryDao.findBookBorrowsByKsiazka(book);
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return userRepositoryDao.findOne(id);
+    }
+
+    @Override
+    public void userBorrowBook(User user, Book book) {
+        BookBorrow bb = new BookBorrow();
+        bb.setKsiazka(book);
+        bb.setUzytkownik(user);
+        bb.setData_wypozyczenia(new Date());
+        bookBorrowsRepositoryDao.save(bb);
+    }
+
+    @Override
+    public List<Book> getAllBookBorrows() {
+        return bookRepositoryDao.getAll();
     }
 
 

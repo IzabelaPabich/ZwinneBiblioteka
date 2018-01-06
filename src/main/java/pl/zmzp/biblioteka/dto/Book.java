@@ -36,6 +36,9 @@ public class Book {
     @Transient
     public Boolean dostepna = true;
     
+    @Transient
+    public User holder = null;
+    
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="FK_KSIAZKA", nullable=true)
 //    private BookBorrow wypozyczenie;
@@ -57,6 +60,22 @@ public class Book {
         {
             this.dostepna = false;
         }
+    }
+    
+    public Book(Integer id, String name, String author_names, String author_lastname, String category_name, Date issue_date, Integer holder_id, User holder) {
+        this.id_ksiazki = id;
+        this.nazwa_ksiazki = name;
+        this.imiona_autora = author_names;
+        this.nazwisko_autora = author_lastname;
+        this.kategoria = category_name;
+        this.data_wydania = issue_date;
+        this.dostepna = true;
+        if(holder_id != null && holder_id > 0)
+        {
+            this.dostepna = false;
+        }
+        if(holder != null)
+            this.holder = holder;
     }
 
     public Book() {
@@ -113,5 +132,17 @@ public class Book {
     
     public Boolean getDostepna() {
         return dostepna;
+    }
+    
+    public void setDostepna(Boolean available) {
+        this.dostepna = available;
+    }
+    
+    public User getHolder() {
+        return this.holder;
+    }
+    
+    public void setHolder(User user) {
+        this.holder = user;
     }
 }

@@ -35,6 +35,12 @@ public class BookBorrow {
         this.uzytkownik.setId_uzytkownika(user_id);
         this.ksiazka.setId_ksiazki(book_id);
     }
+    
+    public BookBorrow(User user, Book book, Date date) {
+        this.setUzytkownik(user);
+        this.setKsiazka(book);
+        this.setData_wypozyczenia(date);
+    }
             
     public Integer getId_wypozyczenia() {
         return id_wypozyczenia;

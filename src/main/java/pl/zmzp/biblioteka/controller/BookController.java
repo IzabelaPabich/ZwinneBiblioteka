@@ -12,6 +12,7 @@ import pl.zmzp.biblioteka.service.BibliotekaService;
 import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.zmzp.biblioteka.dto.BookBorrow;
 
@@ -43,7 +44,7 @@ public class BookController {
         }
         model.addAttribute("action","/bookstore");
       
-        return "bookstore";
+        return "bookstoreModerator";
     }
     
     @RequestMapping("/my_bookstore")
@@ -79,11 +80,10 @@ public class BookController {
     
     @RequestMapping("/borrows")
     public String borrows(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        final List<Book > borrowedBooks = bibliotekaService.getAllBorrowedBooks();
-        model.addAttribute("books", borrowedBooks);
+        //final List<Book > borrowedBooks = bibliotekaService.getAllBorrowedBooks();
+        final List<Book> books = bibliotekaService.getAllBookBorrows();
+        model.addAttribute("books", books);
         model.addAttribute("action","/return_book");
-        
         return "borrows";
     }
     
@@ -99,5 +99,33 @@ public class BookController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         bibliotekaService.moderatorReturnBook(id);
         return "redirect:/borrows";
+    }
+    
+    @RequestMapping("/book/{id}")
+    public String bookdetails(@PathVariable("id") Integer id, Model model) {
+        Book book = bibliotekaService.getBookById(id);
+        BookBorrow bb = bibliotekaService.getBookBorrowByBook(book);
+        if(bb != null)
+            book.setDostepna(false);
+        else
+            book.setDostepna(true);
+        
+        List<User> users = bibliotekaService.getAllUsers();
+        model.addAttribute("book", book);
+        model.addAttribute("bookBorrow", bb);
+        model.addAttribute("users", users);
+        model.addAttribute("action_user", "/book/"+id.toString());
+        return "bookDetails";
+    }
+    
+    @RequestMapping(value = "/book/{id}", method = RequestMethod.POST)
+    public String bookdetailsborrow(@PathVariable("id") Integer id, Model model, @RequestParam (value="user", required = false, defaultValue = "") Integer user) {
+        Book book = bibliotekaService.getBookById(id);
+        User reader = bibliotekaService.getUserById(user);
+        if(book != null && reader != null)
+        {
+            bibliotekaService.userBorrowBook(reader, book);
+        }
+        return "redirect:/book/"+id.toString();
     }
 }
