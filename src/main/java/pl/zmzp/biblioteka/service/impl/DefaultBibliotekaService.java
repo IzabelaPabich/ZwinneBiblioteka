@@ -1,10 +1,9 @@
 package pl.zmzp.biblioteka.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Service;
 import pl.zmzp.biblioteka.dao.BookRepositoryDao;
 import pl.zmzp.biblioteka.dao.UserRepositoryDao;
@@ -12,9 +11,12 @@ import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+
 import pl.zmzp.biblioteka.dao.BookBorrowsRepositoryDao;
+
+import javax.servlet.http.HttpSession;
 
 @Service
 public class DefaultBibliotekaService implements BibliotekaService {
@@ -100,6 +102,11 @@ public class DefaultBibliotekaService implements BibliotekaService {
     @Override
     public void saveNewBook(Book book) {
         bookRepositoryDao.saveBook(book.getNazwa_ksiazki(), book.getImiona_autora(), book.getNazwisko_autora(), new java.sql.Date(book.getData_wydania().getTime()), book.getKategoria());
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getLoggedUserRolesFormSession(HttpSession httpSession) {
+        return ((SecurityContext)httpSession.getAttribute("SPRING_SECURITY_CONTEXT")).getAuthentication().getAuthorities();
     }
 
 

@@ -1,8 +1,11 @@
 package pl.zmzp.biblioteka.service;
 
+import org.springframework.security.core.GrantedAuthority;
 import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 
+import javax.servlet.http.HttpSession;
+import java.util.Collection;
 import java.util.List;
 
 public interface BibliotekaService {
@@ -21,4 +24,5 @@ public interface BibliotekaService {
     void deleteBook(Integer book_id);
     //boolean checkIfBookExists(String tytul, String nazwiskoAutora);
     void saveNewBook(Book book);
+    Collection<? extends GrantedAuthority> getLoggedUserRolesFormSession(HttpSession httpSession);
 }
