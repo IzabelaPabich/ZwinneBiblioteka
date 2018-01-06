@@ -94,14 +94,15 @@ public class DefaultBibliotekaService implements BibliotekaService {
         bookRepositoryDao.deleteBook(book_id);
     }
 
-    //@Override
-    //public boolean checkIfBookExists(String tytul, String nazwiskoAutora) {
-    //    return true; bookRepositoryDao.findBook(tytul, nazwiskoAutora) != null ;
-    //}
-
     @Override
     public void saveNewBook(Book book) {
-        bookRepositoryDao.saveBook(book.getNazwa_ksiazki(), book.getImiona_autora(), book.getNazwisko_autora(), new java.sql.Date(book.getData_wydania().getTime()), book.getKategoria());
+        bookRepositoryDao.save(book);
+//        bookRepositoryDao.saveBook(book.getNazwa_ksiazki(), book.getImiona_autora(), book.getNazwisko_autora(), new java.sql.Date(book.getData_wydania().getTime()), book.getKategoria());
+    }
+
+    @Override
+    public void deleteUser(Integer user_id) {
+        userRepositoryDao.deleteUser(user_id);
     }
 
     @Override

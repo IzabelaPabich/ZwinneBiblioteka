@@ -1,5 +1,7 @@
 package pl.zmzp.biblioteka.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -25,6 +27,7 @@ public class Book {
     private String nazwisko_autora;
 
     @Column(name = "DATA_WYDANIA")
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date data_wydania;
 
     @Column(name = "KATEGORIA")
