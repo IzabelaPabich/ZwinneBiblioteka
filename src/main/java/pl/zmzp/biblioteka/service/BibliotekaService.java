@@ -1,8 +1,11 @@
 package pl.zmzp.biblioteka.service;
 
+import org.springframework.security.core.GrantedAuthority;
 import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 
+import javax.servlet.http.HttpSession;
+import java.util.Collection;
 import java.util.List;
 import pl.zmzp.biblioteka.dto.BookBorrow;
 
@@ -27,6 +30,7 @@ public interface BibliotekaService {
     //boolean checkIfBookExists(String tytul, String nazwiskoAutora);
     void saveNewBook(Book book);
     void deleteUser(Integer user_id);
+    Collection<? extends GrantedAuthority> getLoggedUserRolesFormSession(HttpSession httpSession);
     public List<Book> getAllBorrowedBooks();
     
     Book getBookById(Integer id);

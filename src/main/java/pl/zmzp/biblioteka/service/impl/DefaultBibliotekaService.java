@@ -2,10 +2,9 @@ package pl.zmzp.biblioteka.service.impl;
 
 import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Service;
 import pl.zmzp.biblioteka.dao.BookRepositoryDao;
 import pl.zmzp.biblioteka.dao.UserRepositoryDao;
@@ -13,10 +12,13 @@ import pl.zmzp.biblioteka.dto.Book;
 import pl.zmzp.biblioteka.dto.User;
 import pl.zmzp.biblioteka.service.BibliotekaService;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+
 import pl.zmzp.biblioteka.dao.BookBorrowsRepositoryDao;
 import pl.zmzp.biblioteka.dto.BookBorrow;
+
+import javax.servlet.http.HttpSession;
 
 @Service
 public class DefaultBibliotekaService implements BibliotekaService {
@@ -110,6 +112,11 @@ public class DefaultBibliotekaService implements BibliotekaService {
         userRepositoryDao.deleteUser(user_id);
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getLoggedUserRolesFormSession(HttpSession httpSession) {
+        return ((SecurityContext)httpSession.getAttribute("SPRING_SECURITY_CONTEXT")).getAuthentication().getAuthorities();
+    }
+    
     @Override
     public List<Book> getAllBorrowedBooks() {
         return bookRepositoryDao.findAllBorrowedBooks();
