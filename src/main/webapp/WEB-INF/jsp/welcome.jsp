@@ -5,6 +5,13 @@
 
 <t:layoutBeforeLogin>
     <div>
-
+        <h1>Witaj na stronie głównej biblioteki</h1>
+        <h3>Po zalogowaniu możesz:</h3>
+        <ul>
+            <li>sprawdzić wypożyczone książki</li>
+            <li>sprawdzić aktualnie możliwe do wypożyczenia pozycje</li>
+            <li>wypożyczyć książkę</li>
+            <li>oddać książkę</li>
+        </ul>
     </div>
 </t:layoutBeforeLogin>
