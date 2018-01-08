@@ -43,6 +43,14 @@
         </tr>
     </table>
 </sec:authorize>
+<sec:authorize access="hasAuthority('ADMINISTRATOR')">
+    <table>
+        <tr>
+            <td>administrator</td>
+
+        </tr>
+    </table>
+</sec:authorize>
  -->
         <!-- Roles display 
 <sec:authentication property="authorities" var="roles" scope="page" />
@@ -66,6 +74,9 @@ Your roles are:
                 </sec:authorize>
                 <sec:authorize access="hasAuthority('MODERATOR')">
                 <jsp:include page="/WEB-INF/jsp/menuAfterLoginModerator.jsp" />
+                </sec:authorize>
+                <sec:authorize access="hasAuthority('ADMINISTRATOR')">
+                <jsp:include page="/WEB-INF/jsp/menuAfterLoginAdministrator.jsp" />
                 </sec:authorize>
             </div>
         </header>

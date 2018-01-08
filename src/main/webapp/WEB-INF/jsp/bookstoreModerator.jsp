@@ -7,18 +7,18 @@
 <t:layoutAfterLogin>
     <div>
         <form method="post" action="<c:out value="${action}"/>">
-        <div><input type="text" name="search_text" placeholder="Search.."><button type="submit">Szukaj</button></div>
+        <div><input type="text" name="search_text" placeholder="Search.."><button class="btn item" type="submit">Szukaj</button></div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <table>
-            <tr>
+        <table class="table" frame="border" border="1">
+            <tr class="darkLine">
                 <th>Autor</th>
                 <th>Tytuł</th>
                 <th>Rok wydania</th>
                 <th>Czy dostępna</th>
             </tr>
         <c:forEach var="book" items="${books}" varStatus="counter">
-            <tr>
+            <tr class="whiteLine">
                 <td><c:out value="${book.imiona_autora}"/>&nbsp;<c:out value="${book.nazwisko_autora}"/></td>
             <td><c:out value="${book.nazwa_ksiazki}"/></td>
             <td><fmt:formatDate type = "date" pattern="Y" value = "${book.data_wydania}" /></td>

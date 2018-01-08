@@ -19,7 +19,7 @@
             <form:input type="text" path="email" placeholder="Adres email"/>
             <form:input type="text" path="telefon" placeholder="Numer telefonu"/>
 
-            <form:button type="submit">Submit</form:button>
+            <form:button class="btn item" type="submit">Zarejestruj</form:button>
 
         </form:form>
 

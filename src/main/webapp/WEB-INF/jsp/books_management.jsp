@@ -7,39 +7,39 @@
 
 <t:layoutAfterLogin>
     <div class="container">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newBookModal">Dodaj książkę</button>
+        <button type="button" class="btn item background" data-toggle="modal" data-target="#newBookModal">Dodaj książkę</button>
 
         <!-- Modal -->
         <div class="modal fade" id="newBookModal" role="dialog">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header darkLine">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Dodaj nową książkę</h4>
                     </div>
                     <form:form id="new" role="form" class="form-horizontal" action="/add_book" method="POST" modelAttribute="newBookForm">
-                    <div class="modal-body">
-                            <div class="form-group">
+                    <div class="modal-body background">
+                            <div class="custom-modal-form-group">
                                 <label for="nazwisko_autora">Nazwisko autora</label>
                                 <form:input type="text" class="form-control" path="nazwisko_autora"
                                        id="nazwisko_autora" placeholder="Podaj nazwisko autora" required="required" />
                             </div>
-                            <div class="form-group">
+                            <div class="custom-modal-form-group">
                                 <label for="imiona_autora">Imiona autora</label>
                                 <form:input type="text" class="form-control" path="imiona_autora"
                                             id="imiona_autora" placeholder="Podaj imiona autora" required="required" />
                             </div>
-                            <div class="form-group">
+                            <div class="custom-modal-form-group">
                                 <label for="tytul">Tytuł</label>
                                 <form:input type="text" class="form-control" path="nazwa_ksiazki"
                                        id="tytul" placeholder="Podaj tytuł" required="required" />
                             </div>
-                            <div class="form-group">
+                            <div class="custom-modal-form-group">
                                 <label for="data_wydania">Data wydania</label>
                                 <form:input type="date" class="form-control" path="data_wydania"
                                        id="data_wydania" placeholder="Podaj datę wydania" required="required" max="2100-12-31"/>
                             </div>
-                            <div class="form-group">
+                            <div class="custom-modal-form-group">
                                 <label for="kategoria">Kategoria:</label>
                                 <form:select class="form-control" id="kategoria" path="kategoria">
                                     <option>Thriller</option>
@@ -51,9 +51,9 @@
                             </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </div>
-                    <div class="modal-footer">
-                        <form:button type="submit" class="btn btn-primary">Zapisz</form:button>
-                        <form:button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</form:button>
+                    <div class="modal-footer  background">
+                        <form:button type="submit" class="btn item">Zapisz</form:button>
+                        <form:button type="button" class="btn item" data-dismiss="modal">Anuluj</form:button>
                     </div>
                     </form:form>
                 </div>
@@ -62,8 +62,8 @@
     </div>
 
     <div>
-        <table frame="border" border="1">
-            <tr>
+        <table frame="border" border="1" class="table" >
+            <tr class="darkLine">
             <td>Tytuł książki</td>
             <td>Nazwisko autora</td>
             <td>Imiona autora</td>
@@ -72,13 +72,13 @@
             <td>Operacja</td>
             </tr>
         <c:forEach var="book" items="${books}" varStatus="counter">
-            <tr>
+            <tr class="whiteLine">
             <td><c:out value="${book.nazwa_ksiazki}"/></td>
             <td><c:out value="${book.nazwisko_autora}"/></td>
             <td><c:out value="${book.imiona_autora}"/></td>
             <td><c:out value="${fn:substring(book.data_wydania, 0, 10)}"/></td>
             <td><c:out value="${book.kategoria}"/></td>
-            <td><form method="post" action="<c:out value="${delete_book}"/>"><input type="hidden" name="id" value="<c:out value="${book.id_ksiazki}"/>"/><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><input type='submit' value='Usuń książkę'></form><br></td>
+            <td class="item"><form method="post" action="<c:out value="${delete_book}"/>"><input type="hidden" name="id" value="<c:out value="${book.id_ksiazki}"/>"/><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><input type='submit' class="btn" value='Usuń książkę'></form><br></td>
             </tr>
         </c:forEach>
         </table>

@@ -13,7 +13,7 @@ body {
 }
 
 .menu {
-    height: 30px;
+    height: 35px;
     margin-bottom: 2%;
     border-bottom: thin solid;
 }
@@ -24,6 +24,7 @@ body {
 }
 
 .left-site {
+    padding-top: 5px;
     float: left;
 }
 
@@ -35,7 +36,6 @@ body {
     display: block;
     width: 20%;
     height: 100%;
-    padding: 0 8px;
     text-align: center;
 }
 
@@ -43,6 +43,7 @@ body {
     background-color: #9999ff;
     border-left: thin solid;
     border-right: thin solid;
+    text-decoration: underline;
 }
 
 a, input {
@@ -69,9 +70,25 @@ a, input {
 }
 
 .btn {
+    background: bottom;
+    border: none;
+    height: 90%;
+    font-weight: bold;
+}
+
+.background {
     background-color: #ccccff;
-    width: 40%;
-    height: 100%;
+}
+
+.item:hover {
+    background-color: #9999ff;
+    border-left: thin solid;
+    border-right: thin solid;
+    text-decoration: underline;
+}
+.table {
+    padding:5px
+    border: 1px solid black;
 }
 
 .login-form {
@@ -79,4 +96,15 @@ a, input {
     text-align: right;
 }
 
+.darkLine {
+    background-color: #9999ff;
+}
+
+.whiteLine {
+    background-color: white;
+}
+
+.custom-modal-form-group {
+    padding: 5px
+}
 

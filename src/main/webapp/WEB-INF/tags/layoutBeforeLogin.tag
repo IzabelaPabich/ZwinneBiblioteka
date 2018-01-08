@@ -40,6 +40,14 @@
         </tr>
     </table>
 </sec:authorize>
+<sec:authorize access="hasAuthority('ADMINISTRATOR')">
+    <table>
+        <tr>
+            <td>administrator</td>
+
+        </tr>
+    </table>
+</sec:authorize>
         -->
         <!-- Roles display 
 <sec:authentication property="authorities" var="roles" scope="page" />

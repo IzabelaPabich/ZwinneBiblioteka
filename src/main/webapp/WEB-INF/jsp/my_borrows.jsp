@@ -6,14 +6,14 @@
 
 <t:layoutAfterLogin>
     <div>
-        <table>
-            <tr>
+        <table class="table" frame="border" border="1">
+            <tr class="darkLine">
                 <th>Tytuł</th>
                 <th>Autor</th>
                 <th>Kiedy wypożyczona</th>
             </tr>
         <c:forEach var="book" items="${books}" varStatus="counter">
-            <tr>
+            <tr class="whiteLine">
                 <td><c:out value="${book.ksiazka.nazwa_ksiazki}"/></td>
                 <td><c:out value="${book.ksiazka.imiona_autora}"/>&nbsp;<c:out value="${book.ksiazka.nazwisko_autora}"/></td>
                 <td><fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${book.data_wypozyczenia}" /></td>

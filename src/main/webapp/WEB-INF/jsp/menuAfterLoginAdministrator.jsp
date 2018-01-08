@@ -3,10 +3,10 @@
     <a href="/mainpage">Strona główna</a>
 </div>
 <div class="left-site menu-item">
-    <a href="/my_bookstore">Katalog książek</a>
+    <a href="/users_management">Zarządzaj użytkownikami</a>
 </div>
 <div class="left-site menu-item">
-    <a href="/my_borrows">Moje wypożyczenia</a>
+    <a href="/books_management">Zarządzaj książkami</a>
 </div>
 <form action="/logout" method="post">
     <input type="hidden"

@@ -6,14 +6,14 @@
 
 <t:layoutAfterLogin>
     <div>
-        <table>
-            <tr>
+        <table class="table" frame="border" border="1">
+            <tr class="darkLine">
                 <th>Autor</th>
                 <th>Tytuł</th>
                 <th>Rok wydania</th>
                 <th>Czy dostępna</th>
             </tr>
-            <tr>
+            <tr class="whiteLine">
                 <td><c:out value="${book.imiona_autora}"/>&nbsp;<c:out value="${book.nazwisko_autora}"/></td>
                 <td><c:out value="${book.nazwa_ksiazki}"/></td>
                 <td><fmt:formatDate type = "date" pattern="Y" value = "${book.data_wydania}" /></td>
@@ -23,12 +23,12 @@
         </table>
             <c:if test="${book.getDostepna()}">
         <form method="post" action="<c:out value="${action_user}"/>">
-        <table>
-            <tr>
+        <table class="table" frame="border" border="1">
+            <tr class="darkLine">
                 <th>Użytkownik</th>
             </tr>
             <c:forEach var="user" items="${users}" varStatus="counter">
-                <tr>
+                <tr class="whiteLine">
                     <td>
                         <label>
                         <input type="radio" name="user" value="<c:out value="${user.id_uzytkownika}"/>">
@@ -39,7 +39,7 @@
             </c:forEach>
 
         </table>
-        <button type="submit">Wypożycz</button>
+        <button class="btn item" type="submit">Wypożycz</button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
         </c:if>

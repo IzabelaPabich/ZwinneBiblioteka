@@ -5,8 +5,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layoutBeforeLogin>
-    <div class="login">
-        <div class="login-text">
+    <div class="login whiteLine">
+        <div class="login-text darkLine">
             Zaloguj się
         </div>
         <div class="login-form">
@@ -32,7 +32,7 @@
                 <input type="hidden"
                        name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
-                <input class="btn" type="submit" value="Zaloguj się"/>
+                <input class="btn item background" type="submit" value="Zaloguj się"/>
 
             </form>
         </div>

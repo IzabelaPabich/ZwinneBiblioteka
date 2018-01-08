@@ -8,11 +8,9 @@
 <div class="left-site menu-item">
     <a href="/borrows">Zarządzanie  wypożyczeniami</a>
 </div>
-<div class="right-site menu-item">
-    <form action="/logout" method="post">
-        <input type="hidden"
-               name="${_csrf.parameterName}"
-               value="${_csrf.token}"/>
-        <input class="btn" type="submit" value="Wyloguj się">
-    </form>
-</div>
+<form action="/logout" method="post">
+    <input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
+    <input class="btn menu-item right-site background" type="submit" value="Wyloguj się">
+</form>

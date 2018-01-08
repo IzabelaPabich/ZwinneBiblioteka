@@ -5,26 +5,26 @@
 
 <t:layoutAfterLogin>
     <div>
-        <table>
-            <tr>
+        <table class="table" frame="border" border="1">
+            <tr class="darkLine">
                 <th>Autor</th>
                 <th>Tytuł</th>
                 <!--<th>Użytkownik</th>-->
                 <th>Akcja</th>
             </tr>
         <c:forEach var="book" items="${books}" varStatus="counter">
-            <tr>
+            <tr class="whiteLine">
                 <td><c:out value="${book.imiona_autora}"/>&nbsp;<c:out value="${book.nazwisko_autora}"/></td>
                 <td><c:out value="${book.nazwa_ksiazki}"/></td>
                 <!--<td><c:if test="${book.getDostepna() eq false}"><c:out value="${book.holder.imiona_uzy}"/>&nbsp;<c:out value="${book.holder.nazwisko_uzy}"/></c:if></td>-->
-                <td>
+                <td class="item">
                     <c:if test="${book.getDostepna() eq false}">
-                    <form method="post" action="<c:out value="${action}"/>"><input type="hidden" name="id" value="<c:out value="${book.id_ksiazki}"/>"/><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><input type='submit' value='Zwróć'></form>
+                    <form method="post" action="<c:out value="${action}"/>"><input type="hidden" name="id" value="<c:out value="${book.id_ksiazki}"/>"/><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><input type='submit' class="btn" value='Zwróć'></form>
                     </c:if>
                     <c:if test="${book.getDostepna()}">
                     <form method="get" action="/book/<c:out value="${book.id_ksiazki}"/>">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        <input type='submit' value='Wypożycz'>
+                        <input type='submit' class="btn" value='Wypożycz'>
                     </form>
                     </c:if>
                     </td>
